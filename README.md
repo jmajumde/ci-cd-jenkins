@@ -50,3 +50,23 @@ export PATH=/vagrant_data/apache-maven-3.6.0/bin:$PATH:$HOME/.local/bin:$HOME/bi
 export JAVA_HOME=/vagrant_data/jdk1.8.0_191
 [vagrant@localhost bin]$
 ```
+
+We can package the vagrant vm again for future use as below
+
+```
+mkdir box
+cd box
+vagrant package --base vagrant_default_1541366662424_97265 --vagrantfile /mywork/ci-cd-jenkins/vagrant/Vagrantfile --outfile jm-ci-cd-jenkin.box
+```
+
+# Install jenkin
+I used yum to install jenkins. It will install and configure jenkin as a service. Then we can use "service jenkin start" to start the jenkin. Once the jenkin server started, open FF browser in guest machine and use admin user to login. First time the admin password needs to be copied from jenkins secret. Once we login we can change the "admin" user password from console. 
+```
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+sudo yum install jenkins
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+http://127.0.0.1:8080
+```
+
+to login as "admin" user. 
