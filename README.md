@@ -79,3 +79,10 @@ JENKINS_LISTEN_ADDRESS="10.0.0.2"
 [opc@jmvm-public ~]$
 ```
 
+In case you run into the following error when build your first Jenkins job
+```
+FATAL: Couldn't find any executable in /Users/xxxxx/Documents/apache-maven-3.3.9
+Build step 'Invoke top-level Maven targets' marked build as failure
+Finished: FAILURE
+```
+it means jenkins  user doesn't have permissions to access your maven directory. (Jenkins by default will run all builds under a special user name called jenkins ). To fix it, we need to ensure that jenkins user has read and executable permission on /**/**apache-maven-**  folder.
