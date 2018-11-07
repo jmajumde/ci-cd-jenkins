@@ -70,3 +70,12 @@ http://127.0.0.1:8080
 ```
 
 to login as "admin" user. 
+
+In case of external cloud instances like for example OCI or AWS vm if we install jenkins and expose the port 8080 to login. Even after login sometime it shows a blank page. The dashboard does not come up. To overcome this issue you may need to modify "JENKINS_LISTEN_ADDRESS" from /etc/sysconfig/jenkins (for OEL) to indicate the private ip for the server instead localhost. By default jenkins listen on localhost. 
+
+```
+[opc@jmvm-public ~]$ sudo grep JENKINS_LISTEN_ADDRESS /etc/sysconfig/jenkins 
+JENKINS_LISTEN_ADDRESS="10.0.0.2"
+[opc@jmvm-public ~]$
+```
+
